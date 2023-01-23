@@ -14,13 +14,16 @@
 */
 
 /**
+ * Comments should be present at the beginning of each procedure and class.
+ * Great to have comments before crucial code sections within the procedure.
+ */
+ 
+*/**
  * Define Global Variables
  * 
 */
-const sections = document.querySelectorAll('section');
-const Ul = document.querySelector('ul');
-const fragment = document.createDocumentFragment();
-const goTop = document.getElementById('topScroll');
+const sections = Array.from(document.querySelectorAll("section");
+const navList = document.getElementById("navbar_list");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -28,75 +31,79 @@ const goTop = document.getElementById('topScroll');
 */
 
 // build the nav
-sections.forEach(section => {
-  //Extract the data-nav value from the section and store it in variable
-    const navData = section.getAttribute("data-nav");
-//Extract IdAttribute value from the section and store it in variable
-    const IdAttribute = section.getAttribute('id');
-//create new li
-    const newli = document.createElement("li");
-//create new link
-    const links = document.createElement("a");
-// add navbar style   
+function createlistItem() {
+  for(sec of sections) {
+    listItem = document.createElement("li);
+    listItem.innerHTML = <li><a href="#${sec.id}"data.nav="${sec.id}"class="menu_link">${sec.dataset.nav}</a>
+      navList.appendchild(listItem);
+}
+
+// add navbar style 
     links.classList.add("menu__link");
-// get the href from the sections id
+
     links.setAttribute('href',IdAttribute);
-// scroll between the sections 
+
 // Scroll to section on link click
     links.addEventListener('click', e => {
         e.preventDefault();
-        section.scrollIntoView({behavior : "smooth"})
-    });
+      section.scrollIntoView({behaviour : "smooth"});
+      
 // add the name of sections from the data-nav
-    const text = document.createTextNode(navData);
-
+    const text = document.createTextNode(navDate);
+  
 links.appendChild(text);
-    newli.appendChild(links);
-    fragment.appendChild(newli);
+      newli.appendChild(links);
+      fragment.appendChild(newli);
     });
-//append in fragment to make performance improvements  
-    Ul.appendChild(fragment);
 
-        window.addEventListener('scroll',()=>{
+  Ul.appendChild(fragment);
 
-//  For Chek What Is Section On Screen Now and remove the active class
-        const activesec = document.getElementsByClassName('your-active-class')[0];
+window.adEventlistener('scroll'()=>{
 
-        if(activesec !== undefined){
-            activesec.classList.remove('your-active-class')
+
+// Check which section on screen and remove active class
+  const activesec = document.getElementsByClassName('your-active-class')[0];
+ 
+  if(activesec !== undefined){
+    activesec.classList.remove('your-active-class')
         }
-//  For Chek What Is Section On Screen Now and remove the nav-class from the nav-bar
-        const ActiveNav = document.getElementsByClassName('navactive')[0];
+  
+//  Check which section on screen and remove navactive class
+   const ActiveNav = document.getElementsByClassName('navactive')[0]
 
-        if(ActiveNav !== undefined){
-            ActiveNav.classList.remove('navactive')
+        if(activeNav !== undefined){
+         ActiveNav.classList.remove('navactive')
         }
+            
           
-// Set sections as active
-        sections.forEach(section => {
-
-        const react = section.getBoundingClientRect();
-
-        if(react.top >=-50 && react.top<394){
+// set sections to be active
+  sections.forEach(section => {
+    
+    const react = section.getBoundingClientRect();
+  
+  if(react.top >=-50 && react.top<394>{
+    
+    section.classlist.add('your-active-class');
+    
                                
-                section.classList.add('your-active-class');
-// Set nav-bar as active
+// set navbar to be active
                 
-         const listactive = document.querySelectorAll(`a[href='${section.id}']`)[0].parentElement;
-
-         listactive.classList.add("navactive");
-                
-// Go To Top g
-        if (section.id == "section1"){   
-                   
-             goTop.style.display = 'none';
-        }else {
-
-             goTop.style.display ='block';
-           }
-        }
-    })
-})
+        const listactive = document.querySelectorAll(`a[href='${section.id}']`)[0].parentElement;
+    
+        listactive.classList.add("navactive");
+    
+           
+//how to go top
+    
+    if (section.id == "section1"){
+      
+      goTop.style.display = 'none';
+    }else{
+      
+      goTop.style.display = 'block';
+    }
+  })
+      
     
  
 
